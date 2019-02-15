@@ -88,7 +88,7 @@
 
                                 <tbody>
 
-                                <tr th:each="user,statu:${pageInfo.list}">
+                                <tr th:each="user,statu:${pageInfo}">
                                     <td class="center" th:text="${statu.index+1}"></td>
                                     <td th:text="${user.nickname}"></td>
                                     <td th:text="${user.username}"></td>
@@ -120,46 +120,7 @@
                             </table>
                         </div><!-- /.span -->
                     </div><!-- /.row -->
-                    <div class="modal-footer no-margin-top">
-                        <ul class="pagination pull-right no-margin pull-left">
-                            <li>
-                                <i th:text="'第'+${pageInfo.pageNum}+'页'"></i>
-                            </li>
-                            <li>
-                                <i th:text="'共'+${pageInfo.pages}+'页'"></i>
-                            </li>
-                        </ul>
-                        <ul class="pagination pull-right no-margin">
-
-                            <li class="prev">
-                                <a href="#">
-                                    <i class="ace-icon fa fa-angle-double-left"></i>
-                                </a>
-                            </li>
-
-                            <li th:if="${pageInfo.hasPreviousPage}"><a
-                                    th:href="@{'/queryAll?pageNo='+${pageInfo.prePage}}"
-                                    aria-label="Previous"> <i class="fa fa-angle-left"></i>&nbsp;上一页
-                            </a></li>
-
-                            <th:block th:each="nav : ${pageInfo.navigatepageNums}">
-                                <li th:class="${nav==pageInfo.pageNum}?'active':''"><a
-                                        th:href="@{'/queryAll?pageNo='+${nav}}"
-                                        th:text="${nav}"></a></li>
-                            </th:block>
-
-                            <th:block th:if="${pageInfo.hasNextPage}">
-                                <li><a
-                                        th:href="@{'/queryAll?pageNo='+${pageInfo.nextPage}}"
-                                        aria-label="Next"> 下一页&nbsp;<i class="fa fa-angle-right"></i>
-                                </a></li>
-                            </th:block>
-                            <li class="next">
-                                <a href="#">
-                                    <i class="ace-icon fa fa-angle-double-right"></i>
-                                </a>
-                            </li>
-                        </ul>
+                    <div th:utext="${page}" >
                     </div>
                     <!-- PAGE CONTENT ENDS -->
                 </div><!-- /.col -->

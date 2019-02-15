@@ -6,6 +6,7 @@ import com.example.demo.base.BaseDto;
 import com.example.demo.entity.ProUserAdminEntity;
 import com.example.demo.service.ProUserService;
 import com.example.demo.util.GsonUtil;
+import com.example.demo.util.PageTool;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -37,12 +39,13 @@ public class UserController {
      * @return
      */
     @GetMapping("/queryAll")
-    String queryAll(Model model, Integer pageNo) {
-        PageHelper.startPage(pageNo, GlobalContents.PAGE_SIZE);
+    String queryAll(Model model, @RequestParam(value = "page", defaultValue = "1") Integer page, HttpServletRequest request) {
+        PageHelper.startPage(page, GlobalContents.PAGE_SIZE);
         List<ProUserAdminEntity> list = userService.queryALl();
-        PageInfo<ProUserAdminEntity> pageInfo = new PageInfo<ProUserAdminEntity>(list);
-        model.addAttribute("pageInfo", pageInfo);
-        return "/user/userList";
+        String pager = PageTool.getInstance().setData(list, request).render();
+        model.addAttribute("pageInfo", list);
+        model.addAttribute("page", pager);
+        return "user/userList";
     }
 
     /**
