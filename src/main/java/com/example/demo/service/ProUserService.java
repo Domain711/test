@@ -13,8 +13,9 @@ public interface ProUserService {
     /**
      * 查询所有用户
      * @return
+     * @page
      */
-    List<ProUserAdminEntity> queryALl();
+    List<ProUserAdminEntity> queryALl(Integer page);
 
     /**
      * 根据用户ID获取用户对象

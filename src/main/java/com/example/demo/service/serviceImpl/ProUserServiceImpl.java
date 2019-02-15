@@ -1,8 +1,10 @@
 package com.example.demo.service.serviceImpl;
 
+import com.example.demo.Contants.GlobalContents;
 import com.example.demo.dao.ProUserAdminDao;
 import com.example.demo.entity.ProUserAdminEntity;
 import com.example.demo.service.ProUserService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,8 @@ public class ProUserServiceImpl implements ProUserService {
     private ProUserAdminDao userDao;
 
     @Override
-    public List<ProUserAdminEntity> queryALl() {
+    public List<ProUserAdminEntity> queryALl(Integer page) {
+        PageHelper.startPage(page, GlobalContents.PAGE_SIZE);
         List<ProUserAdminEntity> res = userDao.queryAll();
         return res;
     }

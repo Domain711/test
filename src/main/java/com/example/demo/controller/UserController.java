@@ -40,8 +40,7 @@ public class UserController {
      */
     @GetMapping("/queryAll")
     String queryAll(Model model, @RequestParam(value = "page", defaultValue = "1") Integer page, HttpServletRequest request) {
-        PageHelper.startPage(page, GlobalContents.PAGE_SIZE);
-        List<ProUserAdminEntity> list = userService.queryALl();
+        List<ProUserAdminEntity> list = userService.queryALl(page);
         String pager = PageTool.getInstance().setData(list, request).render();
         model.addAttribute("pageInfo", list);
         model.addAttribute("page", pager);
