@@ -67,7 +67,7 @@ public class UserController {
     String editUser(Model model, String userId) {
         ProUserAdminEntity user = userService.getUserById(userId);
         model.addAttribute("user", user);
-        return "/user/editUser";
+        return "user/editUser";
     }
 
     /**
