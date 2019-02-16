@@ -1,4 +1,4 @@
-package com.example.demo.Contants;
+package com.example.demo.contants;
 
 /**
  * 全局常量定义

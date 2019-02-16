@@ -1,14 +1,12 @@
 package com.example.demo.controller;
 
-import com.example.demo.Contants.GlobalContents;
+import com.example.demo.contants.GlobalContents;
 import com.example.demo.Exception.ErrorCode;
 import com.example.demo.base.BaseDto;
 import com.example.demo.entity.ProUserAdminEntity;
 import com.example.demo.service.ProUserService;
 import com.example.demo.util.GsonUtil;
 import com.example.demo.util.PageTool;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;

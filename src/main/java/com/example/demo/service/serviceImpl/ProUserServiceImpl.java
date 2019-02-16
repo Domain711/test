@@ -1,6 +1,6 @@
 package com.example.demo.service.serviceImpl;
 
-import com.example.demo.Contants.GlobalContents;
+import com.example.demo.contants.GlobalContents;
 import com.example.demo.dao.ProUserAdminDao;
 import com.example.demo.entity.ProUserAdminEntity;
 import com.example.demo.service.ProUserService;
