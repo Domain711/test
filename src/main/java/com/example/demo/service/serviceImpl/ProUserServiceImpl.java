@@ -7,6 +7,7 @@ import com.example.demo.service.ProUserService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class ProUserServiceImpl implements ProUserService {
     }
 
     @Override
+    @Transactional
     public int addUser(ProUserAdminEntity user) {
         int count = userDao.addUser(user);
         return count;
@@ -35,6 +37,7 @@ public class ProUserServiceImpl implements ProUserService {
     }
 
     @Override
+    @Transactional
     public int mergeUser(ProUserAdminEntity user) {
         int count = userDao.mergeUser(user);
         return count;

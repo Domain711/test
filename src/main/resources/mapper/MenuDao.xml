@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.MenuDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.example.demo.entity.MenuEntity" id="menuMap">
+        <result property="id" column="id"/>
+        <result property="menuName" column="menu_name"/>
+        <result property="menuUrl" column="menu_url"/>
+        <result property="menuParam" column="menu_param"/>
+        <result property="menuRole" column="menu_role"/>
+        <result property="acessType" column="acess_type"/>
+        <result property="menuState" column="menu_state"/>
+        <result property="isHeader" column="is_header"/>
+        <result property="pid" column="parent_id"/>
+        <result property="menuIcon" column="menu_icon"/>
+        <result property="menuRemark" column="menu_remark"/>
+        <result property="menuOrder" column="menu_order"/>
+        <result property="menuType" column="menu_type"/>
+        <result property="menuPosation" column="menu_posation"/>
+    </resultMap>
+
+    <!--查询所有菜单-->
+    <select id="queryALlMenu" resultMap="menuMap">
+        select * from menu
+    </select>
+    <!--根据ID查询菜单对象-->
+    <select id="queryMenuById" resultMap="menuMap">
+        select * from menu where id=#{id}
+    </select>
+
+    <!--查询所有上级菜单-->
+    <select id="queryParentMenu" resultMap="menuMap">
+        select id,menu_name,parent_id from menu
+    </select>
+
+    <!--新增菜单-->
+    <insert id="saveMenu" parameterType="com.example.demo.entity.MenuEntity" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into `menu` (menu_name,menu_url,menu_param,menu_role,acess_type,menu_state,is_header,parent_id,menu_icon,menu_remark,menu_order,menu_type,menu_posation)
+        VALUES (#{menuName}, #{menuUrl}, #{menuParam}, #{menuRole},  #{acessType}, '1', '0', #{pid}, #{menuIcon}, #{menuRemark}, #{menuOrder}, #{menuType}, #{menuPosation})
+    </insert>
+
+    <!--更新菜单信息-->
+    <update id="saveEditMenu" parameterType="com.example.demo.entity.MenuEntity">
+        update
+          `menu` set
+          menu_name = #{menuName},menu_url=#{menuUrl},menu_param=#{menuParam},menu_role=#{menuRole},acess_type=#{acessType},parent_id=#{pid},menu_icon=#{menuIcon},
+          menu_remark=#{menuRemark},menu_order=#{menuOrder},menu_type=#{menuType},menu_posation=#{menuPosation}
+          where id=#{id}
+    </update>
+</mapper>

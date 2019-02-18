@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="/css/layui.css"/>
+        <style type="text/css">
+            body {
+                padding: 10px 30px;
+            }
+
+            .hide {
+                display: none
+            }
+        </style>
+    </head>
+    <body>
+
+        <button class="layui-btn layui-btn-primary" th:onclick="'addMenu()'">新增菜单</button>
+
+        <table class="layui-table layui-form" id="test-tree-table"></table>
+
+        <script type="text/javascript" src="layer/layui.js"></script>
+        <script type="text/javascript" th:inline="javascript">
+            var res = [(${data})]
+            layui.config({
+                base: 'js/',
+            })
+            layui.use(['treetable', 'form'], function () {
+                var data = res;
+                var o = layui.$, treetable = layui.treetable;
+                var form = layui.form, layer = layui.layer;
+                treetable.render({
+                    elem: '#test-tree-table',
+                    data: data,
+                    field: 'id',
+                    is_checkbox: true,
+                    cols: [
+                        {
+                            field: 'id',
+                            title: '编号',
+                            width: '10%'
+                        },
+                        {
+                            field: 'menuName',
+                            title: '菜单名称',
+                            width: '12%'
+                        },
+                        {
+                            field: 'menuUrl',
+                            title: '菜单路径',
+                            width: '18%'
+                        },
+                        {
+                            field: 'menuRole',
+                            title: '路径验证规则',
+                            width: '12%'
+
+                        },
+                        {
+                            field: 'acessType',
+                            title: '请求方式',
+                            width: '12%'
+                        },
+                        {
+                            field: 'menuState',
+                            title: '状态',
+                            width: '12%'
+                        },
+                        {
+                            field: 'menuOrder',
+                            title: '排序',
+                            width: '12%'
+                        },
+                        {
+                            field: 'actions',
+                            title: '操作',
+                            width: '10%',
+                            template: function (item) {
+                                var tem = [];
+                                // if (item.pid == 0) {
+                                //     tem.push('<a class="add-child" lay-filter="add">添加子级</a>');
+                                // }
+                                tem.push('<a lay-filter="edit">编辑</a>');
+                                // if (item.pid > 0) {
+                                //     tem.push('<a class="set-attr">设置属性</a>');
+                                // }
+                                return tem.join(' <font>|</font> ')
+                            },
+                        },
+                    ]
+                });
+
+                treetable.on('treetable(add)', function (data) {
+                    layer.msg('添加操作');
+                    console.dir(data);
+                })
+
+                treetable.on('treetable(edit)', function (data) {
+                    var index = layer.open({
+                        title: "菜单编辑",
+                        type: 2,
+                        area: ['800px', '750px'],
+                        shadeClose: true, //点击遮罩关闭
+                        content: '/editMenu?id='+data.item.id,
+                        fix: true
+                    })
+                })
+
+                o('.up-all').click(function () {
+                    treetable.all('up');
+                })
+
+                o('.down-all').click(function () {
+                    treetable.all('down');
+                })
+
+                o('.get-checked').click(function () {
+                    console.dir(treetable.all('checked'));
+                })
+
+                form.on('switch(status)', function (data) {
+                    layer.msg('监听状态操作');
+                    console.dir(data);
+                })
+            })
+
+            //新增菜单
+            function addMenu() {
+                var index = layer.open({
+                        title: "菜单新增",
+                        type: 2,
+                        area: ['800px', '750px'],
+                        shadeClose: true, //点击遮罩关闭
+                        content: '/addMenu',
+                        fix: true
+                    }
+                );
+            }
+        </script>
+    </body>
+</html>
