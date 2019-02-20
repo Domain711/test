@@ -46,7 +46,7 @@ public class MenuController {
      * @param model
      * @return
      */
-    @GetMapping("/queryALlMenu")
+    @GetMapping("/queryAllMenu")
     String queryALlMenu(Model model) {
         List<MenuEntity> menuList = menuService.queryAllMenu();
         model.addAttribute("data", GsonUtil.gson2String(menuList));
