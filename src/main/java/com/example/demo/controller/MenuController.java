@@ -100,6 +100,7 @@ public class MenuController {
             TreeBaseData childData = new TreeBaseData();
             childData.setId(child.getId());
             childData.setName(child.getMenuName());
+            childData.setUrl(child.getMenuUrl());
             childData.setChildren(getChildMenu(child, menuList));
             childList.add(childData);
         }
@@ -108,6 +109,7 @@ public class MenuController {
             return null;
         return childList;
     }
+
 
     /**
      * 新增菜单
@@ -119,6 +121,34 @@ public class MenuController {
     @GetMapping("/addMenu")
     String addMenu(Model model, @Param("id") Integer id) {
         return "menu/addMenu";
+    }
+
+    /**
+     * 左侧菜单
+     *
+     * @return
+     */
+    @GetMapping("/navMenu")
+    String navMenu(Model model) {
+        List<MenuEntity> menuList = menuService.queryParentMenu();
+
+        List<TreeBaseData> data = new ArrayList<>();
+        //获取所有一级菜单
+        List<MenuEntity> rootMenu = menuList.stream().filter(item -> item.getPid() == 0)
+                .filter(item -> item.getMenuPosation() == 0)
+                .collect(Collectors.toList());
+        for (MenuEntity menu : rootMenu) {
+            TreeBaseData treeBaseData = new TreeBaseData();
+            treeBaseData.setId(menu.getId());
+            treeBaseData.setName(menu.getMenuName());
+            treeBaseData.setUrl(menu.getMenuUrl());
+            List<TreeBaseData> childMenu = getChildMenu(menu, menuList);
+            treeBaseData.setChildren(childMenu);
+            data.add(treeBaseData);
+        }
+
+        model.addAttribute("data", data);
+        return "/menu/navMenu";
     }
 
     @GetMapping("/editMenu")

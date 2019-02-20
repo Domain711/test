@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
+<body>
+<!--定义个片段-->
+<li class="" th:fragment="nav (menuName,menuUrl,child)">
+    <a th:href="@{${menuUrl}}" class="dropdown-toggle" href="http://localhost:8080/queryAll">
+        <i class="menu-icon fa fa-desktop"></i>
+        <span class="menu-text" th:text="${menuName}">
+        <!--一级标签-->
+        </span>
+        <b th:class="${child}==null ? 'arrow' : 'arrow fa fa-angle-down'"></b>
+    </a>
+
+    <b class="arrow"></b>
+    <!--有子标签-->
+    <ul class="submenu" th:each="chil:${child}">
+        <li class="" th:replace="::nav(${chil.name},${chil.url},${chil.children})">
+            <a th:href="@{${chil.url}}" th:text="${chil.name}" class="">
+                <i class="menu-icon fa fa-caret-right"></i>
+            </a>
+            <b th:class="${child}==null ? 'arrow' : 'arrow fa fa-angle-down'"></b>
+        </li>
+    </ul>
+</li>
+</body>
+</html>

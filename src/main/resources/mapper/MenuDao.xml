@@ -32,7 +32,7 @@
 
     <!--查询所有上级菜单-->
     <select id="queryParentMenu" resultMap="menuMap">
-        select id,menu_name,parent_id from menu
+        select id,menu_name,parent_id,menu_posation,menu_url from menu
     </select>
 
     <!--新增菜单-->

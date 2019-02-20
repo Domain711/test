@@ -8,6 +8,9 @@ import java.util.List;
 public class TreeBaseData {
     private Integer id;
     private String name;
+    private String icon;
+    private String url;
+    private Integer posation;
     private List<TreeBaseData> children;
 
     public Integer getId() {
@@ -33,5 +36,29 @@ public class TreeBaseData {
 
     public void setChildren(List<TreeBaseData> children) {
         this.children = children;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Integer getPosation() {
+        return posation;
+    }
+
+    public void setPosation(Integer posation) {
+        this.posation = posation;
     }
 }
