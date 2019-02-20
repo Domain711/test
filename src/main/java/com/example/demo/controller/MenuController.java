@@ -101,6 +101,7 @@ public class MenuController {
             childData.setId(child.getId());
             childData.setName(child.getMenuName());
             childData.setUrl(child.getMenuUrl());
+            childData.setIcon(menu.getMenuIcon());
             childData.setChildren(getChildMenu(child, menuList));
             childList.add(childData);
         }
@@ -142,6 +143,7 @@ public class MenuController {
             treeBaseData.setId(menu.getId());
             treeBaseData.setName(menu.getMenuName());
             treeBaseData.setUrl(menu.getMenuUrl());
+            treeBaseData.setIcon(menu.getMenuIcon());
             List<TreeBaseData> childMenu = getChildMenu(menu, menuList);
             treeBaseData.setChildren(childMenu);
             data.add(treeBaseData);

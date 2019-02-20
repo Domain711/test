@@ -419,8 +419,8 @@
                     </div>
 
                     <!-- /.sidebar-shortcuts -->
-                    <ul class="nav nav-list" th:each="nav:${data}">
-                        <li class="" th:replace="navBarMenu::nav(${nav.name},${nav.url},${nav.children})">
+                    <ul class="nav nav-list" th:each="menu:${data}">
+                        <li class="" th:replace="navBarMenu::nav(${menu})">
                         </li>
                     </ul><!-- /.nav-list -->
 
