@@ -125,12 +125,12 @@ public class MenuController {
     }
 
     /**
-     * 左侧菜单
+     * 左侧菜单(主页)
      *
      * @return
      */
-    @GetMapping("/navMenu")
-    String navMenu(Model model) {
+    @GetMapping("/index")
+    String index(Model model) {
         List<MenuEntity> menuList = menuService.queryParentMenu();
 
         List<TreeBaseData> data = new ArrayList<>();
@@ -150,7 +150,7 @@ public class MenuController {
         }
 
         model.addAttribute("data", data);
-        return "/menu/navMenu";
+        return "/menu/index";
     }
 
     @GetMapping("/editMenu")
