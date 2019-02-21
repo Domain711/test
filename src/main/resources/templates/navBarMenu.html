@@ -3,7 +3,7 @@
 <body>
 <!--定义个片段-->
 <li class="" th:fragment="nav (menu)">
-    <a th:href="@{${menu.url}}"  th:class="${menu.children}==null ? '' : 'dropdown-toggle'">
+    <a th:href="${menu.url=='/' ? '#' : menu.url}"  th:class="${menu.children}==null ? '' : 'dropdown-toggle'">
         <i th:class="|menu-icon fa ${menu.icon}|"></i>
         <span class="menu-text" th:text="${menu.name}">
         <!--一级标签-->
