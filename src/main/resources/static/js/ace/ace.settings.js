@@ -2,9 +2,9 @@
  <b>Settings box</b>. It's good for demo only. You don't need this.
 */
 (function($ , undefined) {
-	ace.settings.navbar_fixed(null,true);   //导航条固定
-	ace.settings.sidebar_fixed(null, true);  //侧栏
-	ace.settings.breadcrumbs_fixed(null, true);  //面包屑
+	ace.settings.navbar_fixed(null,false);   //导航条固定
+	ace.settings.sidebar_fixed(null, false);  //侧栏
+	ace.settings.breadcrumbs_fixed(null, false);  //面包屑
 
  $('#ace-settings-btn').on(ace.click_event, function(e){
 	e.preventDefault();
@@ -57,7 +57,7 @@
 	
 	if(ace.vars['old_ie']) ace.helper.redraw($('#sidebar')[0], true);
  }).removeAttr('checked').trigger('click');  //启动简洁菜单
-//$('#ace-settings-compact').removeAttr('checked').trigger('click');  //简洁菜单,要放在 $('#ace-settings-compact').on('click', function()...事件绑定后面。
+// $('#ace-settings-compact').removeAttr('checked').trigger('click');  //简洁菜单,要放在 $('#ace-settings-compact').on('click', function()...事件绑定后面。
 
 //交互菜单
  $('#ace-settings-highlight').on('click', function(){

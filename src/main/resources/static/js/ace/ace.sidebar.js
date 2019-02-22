@@ -20,7 +20,6 @@ $("iframe#main_iframe").height($parentHeight);
 
 $('ul.nav-list li,ul.ace-nav li').click(function(){
 	var href = $(this).find('a').attr('href');
-	debugger
 	if(href!='#' && href.indexOf('javascript:')==-1) {
 		$("iframe#main_iframe").attr('src',href);
 	}
